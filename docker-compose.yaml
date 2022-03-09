@@ -22,9 +22,7 @@ services:
       - MYSQL_DATABASE=okmdb
       - MYSQL_USER=openkm
       - MYSQL_PASSWORD=openkm
-      - MYSQL_ROOT_PASSWORD=openkm
-    security_opt:
-      - seccomp:unconfined      
+      - MYSQL_ROOT_PASSWORD=openkm  
     volumes:
       - ./mysql:/var/lib/mysql
     restart: unless-stopped
