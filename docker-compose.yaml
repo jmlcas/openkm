@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+
+  openkm:
+    image: openkm/openkm-ce:6.3.11
+    container_name: openkm
+    ports:
+      - "8200:8080"   
+    volumes:
+      - /server.xml:/opt/tomcat/conf/server.xml
+      - /OpenKM.cfg:/opt/tomcat/OpenKM.cfg      
+      - ./repository:/opt/tomcat/repository
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  mysql:
+    image: mariadb:10.6
+    container_name: mariadb    
+    environment:
+      - MYSQL_DATABASE=okmdb
+      - MYSQL_USER=openkm
+      - MYSQL_PASSWORD=openkm
+      - MYSQL_ROOT_PASSWORD=openkm
+    security_opt:
+      - seccomp:unconfined      
+    volumes:
+      - ./mysql:/var/lib/mysql
+    restart: unless-stopped
