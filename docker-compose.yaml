@@ -8,9 +8,9 @@ services:
     ports:
       - "8200:8080"   
     volumes:
-      - /server.xml:/opt/tomcat/conf/server.xml
-      - /OpenKM.cfg:/opt/tomcat/OpenKM.cfg      
-      - ./repository:/opt/tomcat/repository
+      - ${PWD}/server.xml:/opt/tomcat/conf/server.xml
+      - ${PWD}/OpenKM.cfg:/opt/tomcat/OpenKM.cfg      
+      - ${PWD}/repository:/opt/tomcat/repository
     depends_on:
       - mysql
     restart: unless-stopped
@@ -24,5 +24,5 @@ services:
       - MYSQL_PASSWORD=openkm
       - MYSQL_ROOT_PASSWORD=openkm  
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ${PWD}/mysql:/var/lib/mysql
     restart: unless-stopped
