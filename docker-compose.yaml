@@ -1,9 +1,7 @@
-version: '3.3'
-
 services:
 
   openkm:
-    image: openkm/openkm-ce:6.3.11
+    image: openkm/openkm-ce:latest
     container_name: openkm
     ports:
       - "8200:8080"   
@@ -16,7 +14,7 @@ services:
     restart: unless-stopped
 
   mysql:
-    image: mariadb:10.6
+    image: mariadb:latest
     container_name: mariadb    
     environment:
       - MYSQL_DATABASE=okmdb
@@ -26,3 +24,4 @@ services:
     volumes:
       - ${PWD}/mysql:/var/lib/mysql
     restart: unless-stopped
+
